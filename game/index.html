@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Pact — a duel card game</title>
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div id="table">
+  <div id="fx-layer"></div>
+
+  <!-- Title screen -->
+  <section id="title-screen" class="screen">
+    <div class="title-ember">🔥</div>
+    <h1>EMBER PACT</h1>
+    <p class="tagline">A duel of four elements against the Warden.</p>
+    <div class="legend">
+      <span class="legend-item" style="--el:#e2483a">▲ Flame <em>beats Leaf</em></span>
+      <span class="legend-item" style="--el:#2f7fd0">💧 Tide <em>beats Flame</em></span>
+      <span class="legend-item" style="--el:#3da33d">🍃 Leaf <em>beats Stone</em></span>
+      <span class="legend-item" style="--el:#8a7a5c">■ Stone <em>beats Tide</em></span>
+    </div>
+    <p class="howto">Read the Warden's intent, counter it with the advantaged element, chain the same
+      element for +2 damage a step — or Focus and burn a card for +2 ember. First to 0 life loses.</p>
+    <button id="play-btn" type="button">▶ &nbsp;Play the Duel</button>
+    <p class="keys">Mouse or keys 1–7 to play a card · F to Focus · Esc to cancel</p>
+  </section>
+
+  <!-- Duel table -->
+  <section id="table-screen" class="screen hidden">
+    <header class="topbar">
+      <span id="turn-label">Turn 1</span>
+      <span class="game-name">EMBER PACT</span>
+      <span class="hint">Click a card to play it · F = Focus</span>
+    </header>
+
+    <div class="side warden-side">
+      <div class="side-head">
+        <span class="side-name">🗿 THE WARDEN</span>
+        <span id="warden-count" class="hand-count">4 cards</span>
+      </div>
+      <div id="warden-life" class="life"><div class="life-fill"></div><span class="life-num">30 / 30</span></div>
+      <div id="warden-ember" class="ember"><span class="ember-label">Ember</span><span class="ember-pips"></span><span class="ember-num">3</span></div>
+      <div id="warden-hand" class="warden-hand"></div>
+    </div>
+
+    <div id="intent" class="intent hidden"></div>
+
+    <div class="mid">
+      <ol id="log" class="log"></ol>
+      <div id="chain" class="chain hidden"></div>
+    </div>
+
+    <div class="side player-side">
+      <div class="side-head">
+        <span class="side-name">🔥 YOU</span>
+        <span id="hand-count" class="hand-count">5 cards</span>
+      </div>
+      <div id="player-life" class="life player"><div class="life-fill"></div><span class="life-num">30 / 30</span></div>
+      <div id="player-ember" class="ember"><span class="ember-label">Ember</span><span class="ember-pips"></span><span class="ember-num">3</span></div>
+      <div id="hand" class="hand"></div>
+      <div class="actions">
+        <button id="focus-btn" type="button">🔥 Focus — burn a card for +2 ◆</button>
+        <button id="pass-btn" type="button">Pass</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Win screen -->
+  <section id="win-screen" class="screen end hidden">
+    <div class="win-embers"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="end-mark">🏆</div>
+    <h1 class="win-title">VICTORY</h1>
+    <p class="end-line">The Warden's flame is yours. The Pact is sealed in your name.</p>
+    <p id="win-stats" class="end-stats"></p>
+    <button id="again-win" type="button">▶ &nbsp;Play Again</button>
+  </section>
+
+  <!-- Loss screen -->
+  <section id="loss-screen" class="screen end hidden">
+    <div class="end-mark">🥀</div>
+    <h1 class="loss-title">DEFEAT</h1>
+    <p class="end-line">Your ember gutters out. The Warden keeps the Pact — this time.</p>
+    <p id="loss-stats" class="end-stats"></p>
+    <button id="again-loss" type="button">▶ &nbsp;Try Again</button>
+  </section>
+</div>
+<script type="module" src="./js/main.js"></script>
+</body>
+</html>
